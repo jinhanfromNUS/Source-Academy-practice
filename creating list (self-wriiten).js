@@ -30,3 +30,15 @@ function creating_list(first_digit, second_digit) {
 }
 
 creating_list(90, 70);
+
+//one funciton building list
+
+function building_list(start, end) {
+    return start === end
+           ? list(start)
+           : start < end
+           ? (start < end ? pair (start, building_list(start + 1, end)) : null)
+           : (start > end ? pair (start, building_list(start - 1, end )) : null);
+}
+
+building_list(10, 6);
