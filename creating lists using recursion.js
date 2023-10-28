@@ -1,4 +1,4 @@
-// Creating different kind of lists using reccursion
+// Creating different kind of lists using recursion
 
 // Return: an ascending list from start to end
 // Parameters:
