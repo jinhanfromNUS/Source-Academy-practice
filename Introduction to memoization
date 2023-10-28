@@ -1,0 +1,83 @@
+// Basic concept to create memoization?
+
+// Basically, in this course, it is just an array to store the result which we have computed
+// Avoiding recomputation allows us to run our program faster
+// Quite important in the future
+
+const mem = [];
+
+function name(n) {
+    if (mem[] !== undefined) {
+        return mem[n];
+    } else {
+        const result = naive_function (below)
+        mem[n] = result;
+        return result
+    }
+}
+
+//naive function examples
+
+fibonacci
+k <= 1 ? k : fib(k - 1) + fib(k - 2);
+
+tribonacci
+function trib(n) {
+    return [n === 0 ? 0
+           : n === 1 ? 1
+           : n === 2 ? 1
+           : trib(n - 1) + trib(n - 2) + trib(n - 3);]
+}
+
+naive is after return
+n === 0 ? 0
+           : n === 1 ? 1
+           : n === 2 ? 1
+           : trib(n - 1) + trib(n - 2) + trib(n - 3);
+           
+           
+const storage = [];             //global storage
+
+function test(n) {
+    if (storage[] !== undefined) {      //if not undefined, AKA stored
+        return storage[];               //return stored
+    } else {
+        const result = naive function;  //naive function
+        storage[n] = result;            //store the result
+        return result;                  //return the result
+    }
+}
+
+
+//read and write
+const mem = [];
+
+function read(n, k) {
+    return mem[n] === undefined
+           ? undefined
+           : mem[n][k];
+}
+
+function write(n, k, value) {
+    if (mem[n] === undefined) {
+        mem[n] = [];
+    }
+    mem[n][k] = value;
+}
+
+function mchoose(n, k) {
+    if (read(n, k) !== undefined) {
+        return read(n, k);
+    } else {
+        const result = k > n
+                       ? 0
+                       : k === 0 || k === n
+                       ? 1
+                       : mchoose(n - 1, k) + mchoose(n - 1, k - 1);
+        write(n, k, result);
+        return result;
+    }
+}
+
+mchoose(12, 6);
+//mchoose(100, 50);
