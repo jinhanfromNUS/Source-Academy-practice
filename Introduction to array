@@ -1,0 +1,180 @@
+//playing with basics of array
+
+let array1 = [];                            //creating a new array1
+
+array1[3] = 'bananas';                      //defining the index three as 'bananas'
+
+array1;
+array_length(array1);
+
+function array_even_numbers(n) {
+    let result = [];
+    for (let i = 0; i !== n; i = i + 1) {
+        result[i] = 2 * i + 2;              //what your array wants to be x => x??
+    }
+    return result;
+}
+
+const even_num_to_100 = array_even_numbers(50);
+even_num_to_100;
+
+// swap
+function swap(array, i, j) {
+    let temp = array[i];
+    array[i] = array[j];
+    array[j] = temp;
+}
+const swapped = swap(even_num_to_100, 1, 2);
+swapped;
+
+//map array (new array)
+let result = [];
+function map_array(f, Array) {
+    for(let i = 0; i < array_length(Array); i = i + 1) {
+        result[i] = f(Array[i]);                //Array[i] if want to destroy original array
+    }
+    return result;
+}
+
+map_array(x => x * x, Arr2);
+
+//new_reverse_array (new array, if want to destroy old array, then use swap function
+let result = [];
+function new_reverse_array(array) {
+    for (let i = 0; i < array_length(array); i = i + 1) {
+        result[i] = array[array_length(array) - 1 - i]; 
+    }
+    return result;
+}
+
+new_reverse_array(Arr2);
+
+//append two arrays (new array, super cool concept)
+let result = [];
+function append_arrays(input1, input2) {
+    for(let i = 0; i < array_length(input1); i = i + 1) {
+        result[array_length(result)] = input1[i];
+    }
+    for (let x = 0; x < array_length(input2); x = x + 1) {
+        result[array_length(result)] = input2[x];
+    }
+    return result;
+}
+
+let Arr1 = [];
+Arr1[0] = 2;
+Arr1[1] = 4;
+Arr1[2] = 5;
+
+let Arr2 = [];
+Arr2[0] = 1;
+Arr2[1] = 3;
+Arr2[2] = 7;
+
+append_arrays(Arr1, Arr2);
+
+//zero matrix
+function zero_matrix(rows, cols) {
+    const Matrix = [];
+    for (let i = 0; i < rows; i = i + 1) {
+        Matrix[i] = [];
+        for (let x = 0; x < cols; x = x + 1) {
+            Matrix[i][x] = 0;
+        }
+    }
+    return Matrix;
+}
+
+zero_matrix(3, 4);
+
+//matrix
+function identity_row_matrix(rows, cols) {
+    const Matrix = [];
+    for (let i = 0; i < rows; i = i + 1) {
+        Matrix[i] = [];
+        for (let x = 0; x < cols; x = x + 1) {
+            Matrix[i][x] = cols - x;
+        }
+    }
+    return Matrix;
+}
+
+identity_row_matrix(3, 4);
+
+function increasing_matrix_sideways(rows, cols) {
+    const Matrix = [];
+    for (let i = 0; i < rows; i = i + 1) {
+        Matrix[i] = [];
+        for (let x = 0; x < cols; x = x + 1) {
+            Matrix[i][x] = i * cols + x + 1;
+        }
+    }
+    return Matrix;
+}
+
+increasing_matrix_sideways(4, 6);
+
+function increasing_matrix_downwards(rows, cols) {
+    const Matrix = [];
+    for (let i = 0; i < rows; i = i + 1) {
+        Matrix[i] = [];
+        for (let x = 0; x < cols; x = x + 1) {
+            Matrix[i][x] = x * rows + i + 1;
+        }
+    }
+    return Matrix;
+}
+
+increasing_matrix_downwards(4, 6);
+
+function pascal_matrix(rows, cols) {
+    const Matrix = [];
+    for (let i = 0; i < rows; i = i + 1) {
+        Matrix[i] = [];
+        for (let x = 0; x < cols; x = x + 1) {
+            Matrix[i][x] = i + x + 1;
+        }
+    }
+    return Matrix;
+}
+
+pascal_matrix(10, 10);
+
+//check special matrix
+
+//when the matrix is an array
+function check_sqaure_matrix(array) {
+    const row_length = array_length(array);
+    for (let x = 0; x !== row_length; x = x+1) {
+        let current_column_length = array[x];
+        if (row_length !== array_length(current_column_length)) {
+            return false;   
+        }
+    }
+    return true;
+}
+
+//when the matrix is a list
+function check_square_matrix_list(matrix_list) {
+    const column_length = length(matrix_list);
+    return accumulate((x, y) => y && length(x) === column_length, true, matrix_list);
+}
+
+const square_matrix_list = list(list(1, 2, 3), list (2, 3, 4), list(7, 6, 5));
+
+check_square_matrix_list(square_matrix_list);
+ 
+function check_symmetric_from_Nathan(array) {
+    const length = array_length(array);
+    for(let i = 0; i < length; i = i + 1) {
+        for(let j = i; j < length; j = j + 1) {
+            if(array[i][j] !== array[j][i]) {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+//turns out you do not need additional function to check whether it is a symmetric matrix or not lol
+
+check_symmetric_from_Nathan([[3, 4, 5], [4, 1, 8], [5, 8, 2]]);
