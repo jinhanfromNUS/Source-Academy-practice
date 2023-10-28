@@ -1,0 +1,74 @@
+// Factorial / Permutation / Combination
+
+// Factorial
+// Using recursion
+function factorial_1(n) {
+    return n === 1
+           ? n
+           : n * factorial_1(n-1);
+}
+
+// Using accumulate
+function factorial_2(n) {
+    return accumulate((x, y) => x * y, 1, enum_list(1, n));
+}
+
+// Using iteration
+function factorial_3(n) {
+    function factorial_iter(n, result) {
+        return n === 1
+               ? result
+               : factorial_iter(n-1, result * n);
+    }
+    return factorial_iter(n, 1);
+}
+
+// Using for loop
+function factorial_4(n) {
+    let result = 1;
+    for(let i = 1; i <= n; i = i + 1) {
+        result = result * i;
+        }
+    return result;
+}
+
+//memoization
+const mem = [];
+
+function factorial_5(n) {
+    if (mem[n] !== undefined) {
+        return mem[n];
+    } else {
+        const result = n === 1 ? n : n * factorial_5(n-1);
+        mem[n] = result;
+        return result;
+    }
+}
+
+factorial_5(3);
+
+// Permutation
+// Using recursion
+function permutation_1(n, r) {
+    return r === 1
+           ? n
+           : n * permutation_1(n-1, r-1);
+}
+
+// By mathematical definition
+function permutation_2(n, r) {
+    return factorial_1(n) / factorial_1(r);
+}
+
+// Combination
+// Using recursion
+function combination_1(n, r) {
+    return permutation_1(n, r) / factorial_1(n, r);
+}
+
+// By mathematical definition
+function combination_2(n, r) {
+    return factorial_1(n) / factorial_1(r) / factorial_1(n-r);
+}
+
+combination_2(5, 3);
