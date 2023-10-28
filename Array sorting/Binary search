@@ -1,0 +1,41 @@
+// Binary search
+
+// Return: the index of the key if exist, otherwise display ("Key is not in the array")
+// Parameters:
+//      arr: the array to be searched
+//      key: the key
+function binarySearch(arr, key) {
+    let begin = 0;
+    let end = array_length(arr) - 1;
+    
+    //array is empty
+    if (array_length(arr) === 0) {
+       display("Length of array is 0!");
+       return -1;
+    }
+    
+    //happy path
+    while (begin <= end) { 
+        let mid = math_floor( begin + (end - begin)/2 );
+        if (arr[mid] === key) {
+            return mid;                     //return index
+        } else if (key < arr[mid]) {        //key lies front of current mid
+            end = mid - 1;
+        } else {                            //key lies behind of current mid
+            begin = mid + 1;
+        }
+    }
+    display("Key is not in array");         //when key is not in array
+    return -1; 
+}
+
+
+/*
+ * questions
+ * key is not in array?
+ * array is empty
+ */
+ 
+const arr1 = [1, 1, 2, 3];
+
+binarySearch(arr1, 3);
