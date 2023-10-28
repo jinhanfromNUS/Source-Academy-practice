@@ -1,0 +1,48 @@
+// Map, Accumulate and Filter
+
+// Map explained
+map(x => what you want to do about the list);
+
+// Accumulate explained
+accumulate ((x, y) => what you want to do with x and y, where y is the result of previous, initial, list);
+                                        x1 and initial
+                                x2 and  y
+                        x3 and  y
+                x4 and  y
+        x5 and  y
+    ... and so on
+initial usually is (0, 1, null)
+
+// Filter explained
+filter(pred, list)
+pred(x => what i want [example: x => x % 2 === 0 [even number]] , list);
+
+
+// Operations
+
+//doing shit to a list within a list
+function test1(list) {
+    return map(x => map( x => x * x, x), list);
+}
+
+const a = list(list(2, 3), list(3, 5));
+test(a);
+
+function test2(list) {
+    return accumulate((x, y) => x + y, 0, map(x => x * x, list));
+}
+
+function test2_alternative(list) {
+    return accumulate((x, y) => x * x + y, 0, list);
+}
+
+const b = list(3, 2, 2, 1);
+test2(b);
+test2_alternative(b);
+
+function test3(list) {
+    return accumulate((x, y) => x + y, 0, (map(x => 2 * x, filter(x => x % 2 === 0, list))));
+}
+
+const c = list(1, 3, 4, 2, 5);
+test3(c);
