@@ -1,39 +1,43 @@
-// creating_list using recursion
-//source 2
+// Creating different kind of lists using reccursion
 
+// Return: an ascending list from start to end
+// Parameters:
+//      start:  the first element of return list
+//      end:    the last element of return list
 function ascending(start, end) {
     return start > end
            ? null
            : pair(start, ascending(start + 1, end));
 }
 
+// Return: an descending list from start to end
+// Parameters:
+//      start:  the first element of return list (Also biggest)
+//      end:    the last element of return list (Also smallest)
 function descending(start, end) {
     return start < end
            ? null
            : pair(start, descending(start - 1, end));
 }
 
-/*
-Alternative descending using ascending
-
-function descending (start, end) {
+function descending_using_ascending(start, end) {
     return reverse(ascending(end, start));
 }
-*/
 
-function creating_list(first_digit, second_digit) {
-    return first_digit === second_digit
-           ? list(first_digit)
-           : first_digit < second_digit
-           ? ascending(first_digit, second_digit)
-           : descending(first_digit, second_digit);
+// Return: a list 
+// Parameters:
+//      start:  the first element of return list
+//      end:    the last element of return list
+function enum_with_ascending_descending(initial, end) {
+    return initial === end
+           ? list(initial)
+           : initial < end
+           ? ascending(initial, end)
+           : descending(initial, end);
 }
 
-creating_list(90, 70);
 
-//one funciton building list
-
-function building_list(start, end) {
+function enum_list(start, end) {
     return start === end
            ? list(start)
            : start < end
@@ -41,4 +45,3 @@ function building_list(start, end) {
            : (start > end ? pair (start, building_list(start - 1, end )) : null);
 }
 
-building_list(10, 6);
