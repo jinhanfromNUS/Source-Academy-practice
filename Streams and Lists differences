@@ -1,0 +1,97 @@
+// Differences between using streams and lists
+
+// Every element is factor of 3
+// List: 
+// Return every elements where 3 is a factor between lower_bound and upper_bound
+function factors_of_3(lower_bound, upper_bound) {
+    return lower_bound > upper_bound
+           ? null
+           : (lower_bound % 3 !== 0)
+           ? factors_of_3(lower_bound+1, upper_bound)
+           : pair(lower_bound, factors_of_3(lower_bound + 3, upper_bound));
+}
+
+factors_of_3(4, 28);
+
+// Stream:
+// Return a stream of elements where 3 is a factor from lower_bound
+function factors_of_3_stream(lower_bound) {
+    return (lower_bound % 3 !== 0)
+           ? factors_of_3_stream(lower_bound+1)
+           : pair(lower_bound, () => factors_of_3_stream(lower_bound + 3));
+}
+
+factors_of_3_stream(8, 100);
+eval_stream(factors_of_3_stream(8, 100), 3);
+
+
+
+// Finding the factors of n, from a list
+function factors_of_n(n, start, end) {
+    return start > end
+           ? null
+           : (start % n !== 0)
+           ? factors_of_n(n, start + 1, end)
+           : pair(start, factors_of_n(n, start + n, end));
+}
+
+function factors_of_n_using_filter(n, start, end) {
+    return filter(x => x % n === 0, enum_list(start, end));
+}
+
+factors_of_n(5, 4, 30);
+
+
+// Increment by 3 with an initial
+// List:
+// Create a list of n length, where the each element value is previous + 3
+function n_increment_by_3(initial, n) {
+    return n === 0
+          ? null
+          : pair(initial, skip_by_3_by_num(initial + 3, n - 1));
+}
+
+skip_by_3_by_num(2, 30);
+
+// Stream:
+// Doesn't have a length, each element value is previous element value + 3
+function increment_by_3_stream(initial) {
+    return pair(initial, () => increment_by_3_stream(initial + 3));
+}
+
+
+// Increment by x
+// List:
+function increment_stream(x, increment, n){
+    return n === 0
+           ? null
+           : pair(x, (increment_stream(x + increment, increment, n - 1));
+}
+
+// Stream:
+// Each element in the stream is increased by x
+function increment_stream(x, increment){
+    return pair(x, () => increment_stream(x + increment, increment));
+}
+
+
+
+//filter using stream method
+function filter_with_stream(start, end) {
+    return stream_filter(x => x%5 === 0, enum_stream(start, end));
+}
+
+eval_stream(filter_with_stream(2, 20000), 5);
+
+//filter using list method
+function filter_with_list(start, end) {
+    return filter(x => x%5 === 0, enum_list(start, end));
+}
+
+function take(n, list) {
+    return n === 0
+          ? null
+          : pair(head(list), take(n-1, tail(list)));
+}
+
+take(5, filter_with_list(5, 200000));
