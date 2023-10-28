@@ -1,0 +1,83 @@
+// New to mutable variables
+// Let's create an interactive wallet and groceries simulator
+
+/* Price of Groceries */
+function tomato(n) {
+    return 1.5 * n;
+}
+    
+function cabbage(n) {
+    return 2 * n;
+}
+
+function chicken(n) {
+    return 10 * n;
+}
+
+function egg(n) {
+    return n;
+}
+
+/* Your wallet with 0 money */
+let wallet = 0;
+
+/* Wallet operations */
+function add_money(n) {
+    wallet = wallet + n;
+}
+
+function subtract_money(n) {
+    wallet = wallet - n;
+}
+
+
+
+// Let us start now!
+
+/* 1. First we add 100 dollars into our wallet */
+add_money(100);
+display(wallet);
+// This function adds 100 dollars into our wallet
+// Now our wallet has 100 dollars
+
+/* 2. Mom just gave me another 50 dollars! */
+add_money(50);
+display(wallet);
+// Since wallet is now mutable, we can update the wallet!
+// wallet = 100 (the money in the wallet) + 50 (the money mom gave me)
+// Now our wallet has 150 dollars
+
+/* 3. Let's but two cabbages */
+const two_cabbage_price = cabbage(2);
+// Note the money of the wallet before buying cabbages
+display(wallet);
+// Note the money of the wallet after buying cabbages
+subtract_money(two_cabbage_price);
+display(wallet);
+
+
+/*  Grocery List  */
+// 1. Chicken   2 //
+// 2. Cabbage   3 //
+// 3. Tomato    6 //
+
+wallet = 200;               // This allows us to reset the wallet value to 200
+const price_of_groceries = chicken(2) + cabbage(3) + tomato(6);
+display(wallet);
+display(price_of_groceries);
+
+/* Buying */
+wallet = wallet - price_of_groceries;
+display(wallet);
+
+
+/* Note: */
+wallet = wallet + 30;       // this will increase the current wallet by 30
+display(wallet);
+wallet = wallet - 50;       // this will decrease the current wallet by 50
+display(wallet);
+wallet = wallet - tomato(2);    // Since tomate(2) will return a value, this is allowed too
+display(wallet);
+
+
+wallet;
